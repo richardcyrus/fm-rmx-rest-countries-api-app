@@ -1,0 +1,12 @@
+# remix-run
+.cache
+.env
+.vercel
+.output
+
+/build/
+/public/build
+/api/index.js
+
+# remix with postcss generated css
+app/styles
