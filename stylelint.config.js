@@ -2,6 +2,14 @@ module.exports = {
   extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
   plugins: ['stylelint-order'],
   rules: {
+    'comment-empty-line-before': [
+      'always',
+      {
+        ignoreComments: ['/^#endregion/'],
+        except: ['first-nested'],
+        ignore: ['after-comment', 'stylelint-commands'],
+      },
+    ],
     'declaration-block-no-redundant-longhand-properties': [
       true,
       { ignoreShorthands: ['/flex/', '/grid/'] },
