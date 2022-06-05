@@ -50,6 +50,9 @@
   },
   "homepage": "https://github.com/richardcyrus/fm-rmx-rest-countries-api-app#readme",
   "dependencies": {
+    "@heroicons/react": "^1.0.6",
+    "@reach/listbox": "^0.17.0",
+    "@reach/visually-hidden": "^0.17.0",
     "@remix-run/node": "^1.5.1",
     "@remix-run/react": "^1.5.1",
     "@remix-run/vercel": "^1.5.1",
