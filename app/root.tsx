@@ -1,4 +1,8 @@
-import type { LinksFunction, MetaFunction } from '@remix-run/node';
+import type {
+  LinksFunction,
+  LoaderFunction,
+  MetaFunction,
+} from '@remix-run/node';
 import {
   Links,
   LiveReload,
@@ -6,11 +10,23 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from '@remix-run/react';
+import clsx from 'clsx';
 
 import Header from '~/components/Header';
-import darkStylesUrl from '~/styles/dark.css';
+import type { Theme } from '~/hooks/theme-provider';
+import {
+  NonFlashOfWrongTheme,
+  ThemeProvider,
+  useTheme,
+} from '~/hooks/theme-provider';
 import stylesUrl from '~/styles/style.css';
+import { getThemeSession } from '~/utils/theme.server';
+
+export type LoaderData = {
+  theme: Theme | null;
+};
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -43,20 +59,29 @@ export const links: LinksFunction = () => {
       href: 'https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css',
     },
     { rel: 'stylesheet', href: stylesUrl },
-    {
-      rel: 'stylesheet',
-      href: darkStylesUrl,
-      media: '(prefers-color-scheme: dark)',
-    },
   ];
 };
 
-export default function App() {
+export const loader: LoaderFunction = async ({ request }) => {
+  const themeSession = await getThemeSession(request);
+
+  const data: LoaderData = {
+    theme: themeSession.getTheme(),
+  };
+
+  return data;
+};
+
+function App() {
+  const data = useLoaderData<LoaderData>();
+  const [theme] = useTheme();
+
   return (
-    <html lang="en">
+    <html lang="en" className={clsx(theme)}>
       <head>
         <Meta />
         <Links />
+        <NonFlashOfWrongTheme ssrTheme={Boolean(data.theme)} />
       </head>
       <body>
         <Header />
@@ -66,5 +91,16 @@ export default function App() {
         <LiveReload />
       </body>
     </html>
+  );
+}
+
+export default function AppWithProviders() {
+  const data = useLoaderData<LoaderData>();
+  console.dir(data);
+
+  return (
+    <ThemeProvider specifiedTheme={data.theme}>
+      <App />
+    </ThemeProvider>
   );
 }
