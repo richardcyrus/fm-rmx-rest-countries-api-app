@@ -1,4 +1,3 @@
-// Todo: Make thiss work with node.js
 function formatPopulation(value: number) {
   return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(value);
 }
@@ -20,8 +19,8 @@ async function listAllCountries() {
   const data = await res.json();
 
   return data.map((country: any) => ({
-    population: formatPopulation(country.poulation),
     ...country,
+    population: formatPopulation(country.population),
   }));
 }
 
@@ -44,8 +43,8 @@ async function searchCountryByName(name: string) {
   const data = await res.json();
 
   return data.map((country: any) => ({
-    population: formatPopulation(country.poulation),
     ...country,
+    population: formatPopulation(country.population),
   }));
 }
 
