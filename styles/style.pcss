@@ -179,10 +179,130 @@ button {
 /* #endregion Home Page Styles */
 
 /* #region Filter Input Styles */
+.control-group {
+  align-items: center;
+  background: var(--color-element-background);
+  border-radius: 5px;
+  box-shadow: 0 2px 9px 0 rgb(0 0 0 / 5%);
+  color: var(--color-input-content);
+  display: flex;
+  height: 3em;
+  margin-inline: 1em;
+  padding-inline-start: 2em;
+
+  @media screen and (min-width: 48em) {
+    margin-inline: 0;
+    width: 30em;
+  }
+
+  &:focus-within {
+    border-color: hsl(
+      var(--input-focus-h) var(--input-focus-s) var(--input-focus-l)
+    );
+    box-shadow: 0 0 0 3px
+      hsl(
+        var(--input-focus-h) var(--input-focus-s)
+          calc(var(--input-focus-l) + 40%) / 80%
+      );
+  }
+}
+
+.search-icon {
+  height: 16px;
+  width: 16px;
+}
+
+.search-input {
+  background-color: transparent;
+  border: none;
+  color: var(--color-input-content);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25rem;
+  margin-inline-start: 1.5em;
+  padding: 0.25em 0.15em;
+  transition: 180ms box-shadow ease-in-out;
+  width: 80%;
+
+  &::placeholder {
+    color: var(--color-input-placeholder);
+    font-size: 0.75rem;
+  }
+
+  &:focus {
+    outline: 3px solid transparent;
+  }
+}
 /* #endregion Filter Input Styles */
 
 /* #region Filter Listbox Styles */
 /* #endregion Filter Listbox Styles */
 
 /* #region Country Card Styles */
+.card-link {
+  text-decoration: none;
+}
+
+.card {
+  background: var(--color-element-background);
+  border-radius: 5px;
+  box-shadow: 0 0 7px 2px rgb(0 0 0 / 3%);
+  margin-block-start: 2.5em;
+  overflow: hidden;
+  width: 16.5em;
+}
+
+.card-image {
+  height: 160px;
+  width: 264px;
+}
+
+.card-flag {
+  margin-inline: auto;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  padding-block-end: 2.875em;
+  padding-inline: 1.5em;
+}
+
+.country-name {
+  color: var(--color-text);
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-black);
+  line-height: 1.625rem;
+  margin-block-start: 1.5em;
+}
+
+.card-facts {
+  margin-block-start: 1em;
+}
+
+.card-fact-group {
+  display: flex;
+  margin-block-start: 0.5em;
+}
+
+.card-fact-label {
+  color: var(--color-text);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semi-bold);
+  line-height: 1rem;
+
+  &::after {
+    content: ': ';
+  }
+}
+
+.card-fact-value {
+  color: var(--color-text);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-extra-light);
+  line-height: 1rem;
+  padding-inline-start: 0.5em;
+}
 /* #endregion Country Card Styles */

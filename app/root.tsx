@@ -96,7 +96,6 @@ function App() {
 
 export default function AppWithProviders() {
   const data = useLoaderData<LoaderData>();
-  console.dir(data);
 
   return (
     <ThemeProvider specifiedTheme={data.theme}>
