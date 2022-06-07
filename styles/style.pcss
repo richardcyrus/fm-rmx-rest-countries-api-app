@@ -3,7 +3,7 @@
   --color-background: #fafafa;
   --color-element-background: #fff;
   --color-input-content: #777575;
-  --color-input-placeholder: #777575;
+  --color-input-placeholder: #848484;
   --color-text: #111517;
   --font-family: 'Nunito Sans', sans-serif;
   --font-weight-black: 900;
@@ -186,13 +186,13 @@ button {
   box-shadow: 0 2px 9px 0 rgb(0 0 0 / 5%);
   color: var(--color-input-content);
   display: flex;
-  height: 3em;
-  margin-inline: 1em;
-  padding-inline-start: 2em;
+  height: 3.5rem;
+  margin-inline: 1rem;
+  padding-inline-start: 2rem;
 
   @media screen and (min-width: 48em) {
     margin-inline: 0;
-    width: 30em;
+    width: 30rem;
   }
 
   &:focus-within {
@@ -208,8 +208,8 @@ button {
 }
 
 .search-icon {
-  height: 16px;
-  width: 16px;
+  height: 18px;
+  width: 18px;
 }
 
 .search-input {
@@ -220,8 +220,8 @@ button {
   font-size: 0.875rem;
   font-weight: var(--font-weight-regular);
   line-height: 1.25rem;
-  margin-inline-start: 1.5em;
-  padding: 0.25em 0.15em;
+  margin-inline-start: 1.5rem;
+  padding: 0.25rem 0.15rem;
   transition: 180ms box-shadow ease-in-out;
   width: 80%;
 
@@ -237,6 +237,110 @@ button {
 /* #endregion Filter Input Styles */
 
 /* #region Filter Listbox Styles */
+.region-filter {
+  align-items: center;
+  background: var(--color-element-background);
+  border-radius: 5px;
+  box-shadow: 0 2px 9px 0 rgb(0 0 0 / 5%);
+  display: flex;
+  height: 3.5rem;
+  margin-block-start: 2.5rem;
+  margin-inline-start: 1rem;
+  position: relative;
+  width: 12.5rem;
+
+  @media screen and (min-width: 48em) {
+    margin-block-start: 0;
+    margin-inline-start: auto;
+  }
+
+  &:focus {
+    outline: 3px solid transparent;
+  }
+}
+
+[data-reach-listbox-input] {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+[data-reach-listbox-arrow] {
+  align-self: center;
+  font-size: inherit;
+  margin-inline-end: 1.21875rem;
+  margin-inline-start: auto;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease-in-out;
+}
+
+.chevron-icon {
+  display: block;
+  height: 18px;
+}
+
+[data-reach-listbox-button] {
+  align-items: center;
+  border-color: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25rem;
+  margin-inline-start: 1.5rem;
+  outline: 3px solid transparent;
+  padding: 0;
+  width: 100%;
+
+  &[aria-expanded='true'] > [data-reach-listbox-arrow] {
+    transform: rotate(180deg);
+  }
+}
+
+[data-reach-listbox-popover] {
+  background: var(--color-element-background);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 9px 0 rgb(0 0 0 / 5%);
+  left: 0;
+  min-width: 12.5rem;
+  outline: none;
+  top: 3.75rem;
+
+  &:focus {
+    outline: 3px solid transparent;
+  }
+}
+
+[data-reach-listbox-list] {
+  padding-block: 1rem 0.5rem;
+}
+
+[data-reach-listbox-option] {
+  cursor: pointer;
+  font-size: 0.875rem;
+  letter-spacing: 0;
+  line-height: 1.25rem;
+  padding-block: 0.25rem;
+  padding-inline: 1.5rem;
+
+  &:last-of-type {
+    margin-block-end: 0.25rem;
+  }
+}
+
+/* This is to hide the default entry from the selection list. */
+[data-reach-listbox-option][data-value='default'] {
+  display: none;
+}
+
+[data-reach-listbox-option][data-current-nav] {
+  background-color: hsl(
+    var(--input-focus-h) var(--input-focus-s) var(--input-focus-l)
+  );
+  color: #fff !important;
+}
 /* #endregion Filter Listbox Styles */
 
 /* #region Country Card Styles */

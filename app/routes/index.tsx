@@ -14,29 +14,49 @@ import {
 
 import Card from '~/components/Card';
 import type { CountryCard } from '~/components/Card';
-import { listAllCountries, searchCountryByName } from '~/model/rest-countries';
+import FilterListBox from '~/components/FilterListBox';
+import {
+  getRegionList,
+  listAllCountries,
+  searchCountryByName,
+} from '~/model/rest-countries';
+
+type LoaderData = {
+  regions: Record<string, string>;
+  countries: Array<any>;
+  selectedRegion: string;
+};
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
   const countryName = url.searchParams.get('name');
+  let selectedRegion = url.searchParams.get('region');
 
-  if (typeof countryName === 'string' && countryName.length > 0) {
-    return json(await searchCountryByName(countryName));
+  if (!selectedRegion) {
+    selectedRegion = 'default';
   }
 
-  return json(await listAllCountries());
+  const regions: Record<string, string> = await getRegionList();
+
+  if (typeof countryName === 'string' && countryName.length > 0) {
+    const countries = await searchCountryByName(countryName);
+    return json<LoaderData>({ regions, countries, selectedRegion });
+  }
+
+  const countries = await listAllCountries();
+  return json<LoaderData>({ regions, countries, selectedRegion });
 };
 
 export default function Index() {
   const [searchParams] = useSearchParams();
   const countryName = searchParams.get('name');
 
-  const data = useLoaderData();
+  const data = useLoaderData<LoaderData>();
 
   const submit = useSubmit();
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
-  // Submit the search form after a period of time.
+  // Submit the search input after a period of time.
   function handleSearch(event: FormEvent<HTMLFormElement>) {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
@@ -45,6 +65,12 @@ export default function Index() {
     const form = event.currentTarget;
     timerRef.current = setTimeout(() => submit(form, { replace: true }), 1000);
   }
+
+  // TODO: Implement the `listCountrieInRegion` when the filter is changed.
+  const onFilterChange = (value: string) => {
+    console.log(value);
+    // submit({ sort: value }, { method: "get" });
+  };
 
   return (
     <>
@@ -64,9 +90,16 @@ export default function Index() {
               <VisuallyHidden>Search for a country</VisuallyHidden>
             </label>
           </Form>
+          <Form className="region-filter" method="get">
+            <FilterListBox
+              regions={data.regions}
+              selectedRegion={data.selectedRegion}
+              onFilterChange={onFilterChange}
+            />
+          </Form>
         </div>
         <div className="card-container">
-          {data?.map((country: CountryCard) => (
+          {data.countries.map((country: CountryCard) => (
             // eslint-disable-next-line react/jsx-props-no-spreading
             <Card key={country.alpha3Code} {...country} />
           ))}

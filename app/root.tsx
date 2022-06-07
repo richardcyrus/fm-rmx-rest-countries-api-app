@@ -22,6 +22,7 @@ import {
   useTheme,
 } from '~/hooks/theme-provider';
 import stylesUrl from '~/styles/style.css';
+import vendorStyles from '~/styles/vendor.css';
 import { getThemeSession } from '~/utils/theme.server';
 
 export type LoaderData = {
@@ -58,6 +59,7 @@ export const links: LinksFunction = () => {
       rel: 'stylesheet',
       href: 'https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css',
     },
+    { rel: 'stylesheet', href: vendorStyles },
     { rel: 'stylesheet', href: stylesUrl },
   ];
 };

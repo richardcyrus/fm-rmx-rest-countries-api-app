@@ -85,6 +85,7 @@
     "micromatch": "^4.0.5",
     "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",
+    "postcss-import": "^14.1.0",
     "postcss-nested": "^5.0.6",
     "postcss-sort-media-queries": "^4.2.1",
     "prettier": "^2.6.2",

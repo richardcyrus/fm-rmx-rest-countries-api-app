@@ -10,6 +10,7 @@ This is a solution to the [REST Countries API with color theme switcher challeng
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
   - [Useful resources](#useful-resources)
 - [Author](#author)
 
@@ -52,6 +53,10 @@ Users should be able to:
 - [React](https://reactjs.org/) - JS library.
 - [Vitest](https://vitest.dev) - A blazing fast unit-test framework powered by Vite.
 - [Testing Library](https://testing-library.com) - Simple and complete testing utilities that encourage good testing practices.
+
+### What I learned
+
+- When using the @reach/listbox, turn off the portal option when configuring the popover. It makes styling and behavior predictable and simple.
 
 ### Useful resources
 
