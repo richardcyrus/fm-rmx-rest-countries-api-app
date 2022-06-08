@@ -343,6 +343,59 @@ button {
 }
 /* #endregion Filter Listbox Styles */
 
+/* #region Catch Boundary */
+.catch-boundary {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  min-height: 100%;
+  padding: 0;
+}
+
+.not-found {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-block-start: 20%;
+  min-width: 100%;
+
+  .not-found-image {
+    background-image: url('/emoji.png');
+    background-size: cover;
+    display: inline-block;
+    height: 8.75rem;
+    width: 8.75rem;
+  }
+
+  .not-found-message {
+    margin-inline-start: 1.5rem;
+
+    h2 {
+      color: var(--color-text);
+      font-size: 4.0625rem;
+      font-weight: var(--font-weight-black);
+      margin-block: 0 0.625rem;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      color: var(--color-text);
+      font-size: 1.3125rem;
+      font-weight: var(--font-weight-semi-bold);
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    p {
+      color: var(--color-input-content);
+      font-weight: var(--font-weight-regular);
+      margin-block-start: 0.5rem;
+    }
+  }
+}
+/* #endregion Catch Boundary */
+
 /* #region Country Card Styles */
 .card-link {
   text-decoration: none;

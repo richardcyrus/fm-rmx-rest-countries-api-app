@@ -7,6 +7,7 @@ import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import {
   Form,
+  useCatch,
   useLoaderData,
   useSearchParams,
   useSubmit,
@@ -116,5 +117,22 @@ export default function Index() {
         </div>
       </main>
     </>
+  );
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+
+  return (
+    <main id="main-content" className="catch-boundary">
+      <div className="not-found">
+        <div className="not-found-image"></div>
+        <div className="not-found-message">
+          <h2>{caught.status}</h2>
+          <h3>Oops! Something went wrong.</h3>
+          <p>{caught.data}</p>
+        </div>
+      </div>
+    </main>
   );
 }

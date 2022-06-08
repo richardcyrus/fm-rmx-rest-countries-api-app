@@ -11,7 +11,7 @@ export type CountryCard = {
 
 function Card(props: CountryCard) {
   return (
-    <Link to={`/details/${props.alpha3Code}`} className="card-link">
+    <Link to={`/country/${props.alpha3Code}`} className="card-link">
       <div className="card">
         <div className="card-image">
           <img src={props.flag} alt="" className="card-flag" loading="lazy" />

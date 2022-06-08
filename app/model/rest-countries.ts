@@ -19,7 +19,10 @@ async function listAllCountries() {
   const res = await fetch(`https://restcountries.com/v2/all?${params}`);
 
   if (!res?.ok) {
-    throw new Response('Not Found', { status: res.status });
+    throw new Response(
+      'Sorry but an error occurred when attempting to get all of the countries.',
+      { status: res.status }
+    );
   }
 
   const data = await res.json();
@@ -47,7 +50,10 @@ async function searchCountryByName(name: string) {
   );
 
   if (!res?.ok) {
-    throw new Response('Not Found', { status: res.status });
+    throw new Response(
+      `Sorry but an error occurred looking for country names containing: '${name}'.`,
+      { status: res.status }
+    );
   }
 
   const data = await res.json();
@@ -65,7 +71,10 @@ async function getRegionList() {
   const res = await fetch(`https://restcountries.com/v2/all?${params}`);
 
   if (!res?.ok) {
-    throw new Response('Not Found', { status: res.status });
+    throw new Response(
+      'Sorry but an error occurred when getting the list of regions.',
+      { status: res.status }
+    );
   }
 
   const data: Array<{ region: string; independent: boolean }> =
@@ -110,7 +119,10 @@ async function listCountriesInRegion(region: string) {
   );
 
   if (!res?.ok) {
-    throw new Response('Not Found', { status: res.status });
+    throw new Response(
+      `Sorry but an error occurred looking for countries in the region: '${region}'.`,
+      { status: res.status }
+    );
   }
 
   const data = await res.json();
