@@ -18,6 +18,10 @@ async function listAllCountries() {
 
   const res = await fetch(`https://restcountries.com/v2/all?${params}`);
 
+  if (!res?.ok) {
+    throw new Response('Not Found', { status: res.status });
+  }
+
   const data = await res.json();
 
   return data.map((country: any) => ({
@@ -42,6 +46,10 @@ async function searchCountryByName(name: string) {
     `https://restcountries.com/v2/name/${name}?${params}`
   );
 
+  if (!res?.ok) {
+    throw new Response('Not Found', { status: res.status });
+  }
+
   const data = await res.json();
 
   return data.map((country: any) => ({
@@ -55,6 +63,11 @@ async function getRegionList() {
   const params = new URLSearchParams({ fields: fields.join(',') }).toString();
 
   const res = await fetch(`https://restcountries.com/v2/all?${params}`);
+
+  if (!res?.ok) {
+    throw new Response('Not Found', { status: res.status });
+  }
+
   const data: Array<{ region: string; independent: boolean }> =
     await res.json();
 
@@ -69,7 +82,9 @@ async function getRegionList() {
   };
 
   const regions = regionNames.reduce((result, region) => {
-    let slug = slugify(region);
+    // We set the separator to a literal space, so it is encoded correctly when
+    // submitted as part of the form.
+    let slug = slugify(region, ' ');
     // @ts-ignore
     result[slug] = region;
     return result;
@@ -78,4 +93,37 @@ async function getRegionList() {
   return { ...defaultFilter, ...regions };
 }
 
-export { getRegionList, listAllCountries, searchCountryByName };
+async function listCountriesInRegion(region: string) {
+  const fields = [
+    'alpha3Code',
+    'capital',
+    'flag',
+    'name',
+    'population',
+    'region',
+  ];
+
+  const params = new URLSearchParams({ fields: fields.join(',') }).toString();
+
+  const res = await fetch(
+    `https://restcountries.com/v2/region/${region}?${params}`
+  );
+
+  if (!res?.ok) {
+    throw new Response('Not Found', { status: res.status });
+  }
+
+  const data = await res.json();
+
+  return data.map((country: any) => ({
+    ...country,
+    population: formatPopulation(country.population),
+  }));
+}
+
+export {
+  getRegionList,
+  listAllCountries,
+  listCountriesInRegion,
+  searchCountryByName,
+};

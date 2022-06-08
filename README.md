@@ -64,6 +64,7 @@ Users should be able to:
 - [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 - [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
 - [Guide to Advanced CSS Selectors - Part One](https://moderncss.dev/guide-to-advanced-css-selectors-part-one/#attribute-selector)
+- [Javascript Slugify](https://gist.github.com/mathewbyrne/1280286)
 - [The Complete Guide to Dark Mode with Remix](https://www.mattstobbs.com/remix-dark-mode/)
 - [What Is the Correct TypeScript Return Type for JavaScript's setTimeout() Function?](https://www.designcise.com/web/tutorial/what-is-the-correct-typescript-return-type-for-javascripts-settimeout-function)
 - [Debounce with Remix useSubmit hook](https://discord.com/channels/770287896669978684/770287896669978687/981676677102985306)

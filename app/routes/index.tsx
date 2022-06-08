@@ -7,9 +7,9 @@ import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import {
   Form,
-  useSubmit,
-  useSearchParams,
   useLoaderData,
+  useSearchParams,
+  useSubmit,
 } from '@remix-run/react';
 
 import Card from '~/components/Card';
@@ -18,12 +18,19 @@ import FilterListBox from '~/components/FilterListBox';
 import {
   getRegionList,
   listAllCountries,
+  listCountriesInRegion,
   searchCountryByName,
 } from '~/model/rest-countries';
 
 type LoaderData = {
   regions: Record<string, string>;
-  countries: Array<any>;
+  countries: Awaited<
+    ReturnType<
+      | typeof listCountriesInRegion
+      | typeof searchCountryByName
+      | typeof listAllCountries
+    >
+  >;
   selectedRegion: string;
 };
 
@@ -37,6 +44,11 @@ export const loader: LoaderFunction = async ({ request }) => {
   }
 
   const regions: Record<string, string> = await getRegionList();
+
+  if (selectedRegion && selectedRegion !== 'default') {
+    const countries = await listCountriesInRegion(selectedRegion);
+    return json<LoaderData>({ regions, countries, selectedRegion });
+  }
 
   if (typeof countryName === 'string' && countryName.length > 0) {
     const countries = await searchCountryByName(countryName);
@@ -56,7 +68,7 @@ export default function Index() {
   const submit = useSubmit();
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
-  // Submit the search input after a period of time.
+  // Submit the search input after a period of time (debounced submit).
   function handleSearch(event: FormEvent<HTMLFormElement>) {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
@@ -66,10 +78,8 @@ export default function Index() {
     timerRef.current = setTimeout(() => submit(form, { replace: true }), 1000);
   }
 
-  // TODO: Implement the `listCountrieInRegion` when the filter is changed.
   const onFilterChange = (value: string) => {
-    console.log(value);
-    // submit({ sort: value }, { method: "get" });
+    submit({ region: value }, { method: 'get', replace: true });
   };
 
   return (
@@ -78,6 +88,7 @@ export default function Index() {
         <div className="filter-bar">
           <Form method="get" onChange={handleSearch}>
             <label className="control-group">
+              <VisuallyHidden>Search for a country</VisuallyHidden>
               <SearchIcon className="search-icon" />
               <input
                 type="text"
@@ -87,7 +98,6 @@ export default function Index() {
                 placeholder="Search for a country..."
                 defaultValue={countryName?.length ? countryName : ''}
               />
-              <VisuallyHidden>Search for a country</VisuallyHidden>
             </label>
           </Form>
           <Form className="region-filter" method="get">
