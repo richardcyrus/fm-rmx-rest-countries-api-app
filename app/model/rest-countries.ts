@@ -133,7 +133,81 @@ async function listCountriesInRegion(region: string) {
   }));
 }
 
+async function getBorderCountryInfo(code: string) {
+  const fields = ['alpha3Code', 'name'];
+
+  const params = new URLSearchParams({ fields: fields.join(',') }).toString();
+
+  const res = await fetch(
+    `https://restcountries.com/v2/alpha/${code}?${params}`
+  );
+
+  if (!res?.ok) {
+    throw new Response(
+      `Sorry, an error occurred attempting to retrieve basic information for border country code: '${code}'.`,
+      { status: res.status }
+    );
+  }
+
+  return res.json();
+}
+
+async function getCountryDetailByCode(code: string) {
+  const fields = [
+    'alpha3Code',
+    'borders',
+    'capital',
+    'currencies',
+    'flag',
+    'languages',
+    'name',
+    'nativeName',
+    'population',
+    'region',
+    'subregion',
+    'topLevelDomain',
+  ];
+
+  const params = new URLSearchParams({ fields: fields.join(',') }).toString();
+
+  const res = await fetch(
+    `https://restcountries.com/v2/alpha/${code}?${params}`
+  );
+
+  if (!res?.ok) {
+    throw new Response(
+      `Sorry, an error occurred attempting to retrieve the details for country code: '${code}'.`,
+      { status: res.status }
+    );
+  }
+
+  const data = await res.json();
+
+  return {
+    ...data,
+    population: formatPopulation(data.population),
+    topLevelDomain:
+      data.topLevelDomain.length > 1
+        ? data.topLevelDomain.join(', ')
+        : data.topLevelDomain[0],
+    languages:
+      data.languages.length > 1
+        ? data.languages
+            .map((lang: Record<string, string>) => lang.name)
+            .join(', ')
+        : data.languages[0].name,
+    currencies:
+      data.currencies.length > 1
+        ? data.currencies
+            .map((money: Record<string, string>) => money.name)
+            .join(', ')
+        : data.currencies[0].name,
+  };
+}
+
 export {
+  getBorderCountryInfo,
+  getCountryDetailByCode,
   getRegionList,
   listAllCountries,
   listCountriesInRegion,
