@@ -41,7 +41,7 @@ function ThemeProvider({
 
     // there's no way for us to know what the theme should be in this context
     // the client will have to figure it out before hydration.
-    if (typeof window !== 'object') {
+    if (typeof document === 'undefined') {
       return null;
     }
 
@@ -109,8 +109,6 @@ const clientThemeCode = `
     cl.add(theme);
   }
 
-  // the <dark-mode> and <light-mode> approach won't work for meta tags,
-  // so we have to do it manually.
   const meta = document.querySelector('meta[name=color-scheme]');
   if (meta) {
     if (theme === 'dark') {
