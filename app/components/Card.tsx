@@ -5,8 +5,8 @@ export type CountryCard = {
   capital?: string;
   flag: string;
   name: string;
-  population?: string;
-  region?: string;
+  population: string;
+  region: string;
 };
 
 function Card(props: CountryCard) {
@@ -14,7 +14,13 @@ function Card(props: CountryCard) {
     <Link to={`/country/${props.alpha3Code}`} className="card-link">
       <div className="card">
         <div className="card-image">
-          <img src={props.flag} alt="" className="card-flag" loading="lazy" />
+          <img
+            src={props.flag}
+            width={264}
+            alt=""
+            className="card-flag"
+            loading="lazy"
+          />
         </div>
         <div className="card-body">
           <h2 className="country-name">{props.name}</h2>

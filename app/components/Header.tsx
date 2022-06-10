@@ -19,7 +19,7 @@ function Header() {
           <div className="theme-switch-container">
             <button
               type="button"
-              className="theme-toggle-button"
+              className="button theme-toggle-button"
               onClick={toggleTheme}
             >
               <MoonIcon className="theme-toggle-icon" />

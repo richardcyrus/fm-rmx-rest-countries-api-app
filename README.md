@@ -31,7 +31,18 @@ Users should be able to:
 
 ### Screenshot
 
-![Reference preview](./design/reference/desktop-preview.jpg)
+![Reference preview](./__docs/design/reference/desktop-preview.jpg)
+
+#### Reference images
+
+- [Desktop Home Light](./__docs/design/reference/desktop-design-home-light.jpg)
+- [Desktop Home Dark](./__docs/design/reference/desktop-design-home-dark.jpg)
+- [Desktop Detail Light](./__docs/design/reference/desktop-design-detail-light.jpg)
+- [Desktop Detail Dark](./__docs/design/reference/desktop-design-detail-dark.jpg)
+- [Mobile Home Light](./__docs/design/reference/mobile-design-home-light.jpg)
+- [Mobile Home Dark](./__docs/design/reference/mobile-design-home-dark.jpg)
+- [Mobile Detail Light](./__docs/design/reference/mobile-design-detail-light.jpg)
+- [Mobile Detail Dark](./__docs/design/reference/mobile-design-detail-dark.jpg)
 
 ### Links
 
@@ -53,6 +64,7 @@ Users should be able to:
 - [React](https://reactjs.org/) - JS library.
 - [Vitest](https://vitest.dev) - A blazing fast unit-test framework powered by Vite.
 - [Testing Library](https://testing-library.com) - Simple and complete testing utilities that encourage good testing practices.
+- [Mock Service Worker (msw)](https://mswjs.io/)
 
 ### What I learned
 
@@ -60,14 +72,25 @@ Users should be able to:
 
 ### Useful resources
 
-- [A Modern CSS Reset](https://piccalil.li/blog/a-modern-css-reset/)
 - [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 - [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
-- [Guide to Advanced CSS Selectors - Part One](https://moderncss.dev/guide-to-advanced-css-selectors-part-one/#attribute-selector)
-- [Javascript Slugify](https://gist.github.com/mathewbyrne/1280286)
-- [The Complete Guide to Dark Mode with Remix](https://www.mattstobbs.com/remix-dark-mode/)
-- [What Is the Correct TypeScript Return Type for JavaScript's setTimeout() Function?](https://www.designcise.com/web/tutorial/what-is-the-correct-typescript-return-type-for-javascripts-settimeout-function)
+- [A Modern CSS Reset](https://piccalil.li/blog/a-modern-css-reset/)
+- [Configuring Mock Service Worker](https://www.danieljcafonso.com/configuring_msw)
 - [Debounce with Remix useSubmit hook](https://discord.com/channels/770287896669978684/770287896669978687/981676677102985306)
+- [Guide to Advanced CSS Selectors - Part One](https://moderncss.dev/guide-to-advanced-css-selectors-part-one/#attribute-selector)
+- [Handling Nested HTTP Requests Using the Fetch API](https://www.pluralsight.com/guides/handling-nested-http-requests-using-the-fetch-api)
+- [How to filter out json object from array in javascript](https://stackoverflow.com/questions/67221312/how-to-filter-out-json-object-from-array-in-javascript)
+- [Javascript Slugify](https://gist.github.com/mathewbyrne/1280286)
+- [Make includes() case insensitive in JavaScript](https://bobbyhadz.com/blog/javascript-includes-case-insensitive)
+- [Mocking REST APIs With MSW](https://frontend-digest.com/mocking-rest-apis-with-msw-af2353012daa)
+- [Mocking an API request with Mock Service Worker and Typescript](https://codybontecou.com/mocking-api-with-msw-and-typescript.html#mocking-medium-s-api)
+- [Mocking local dev and tests with msw + @mswjs/data](https://dev.to/jericopingul/react-local-development-and-testing-mocking-with-msw-and-mswjsdata-obl)
+- [Remix + MSW](https://github.com/remix-run/remix/tree/main/examples/msw)
+- [The Complete Guide to Dark Mode with Remix](https://www.mattstobbs.com/remix-dark-mode/)
+- [Using Storybook and Mock Service Worker for mocked API responses](https://blog.logrocket.com/using-storybook-and-mock-service-worker-for-mocked-api-responses/)
+- [What Is the Correct TypeScript Return Type for JavaScript's setTimeout() Function?](https://www.designcise.com/web/tutorial/what-is-the-correct-typescript-return-type-for-javascripts-settimeout-function)
+- [find and filter arrays in JavaScript and Node.js](https://simonjcarr.medium.com/find-and-filter-arrays-in-javascript-and-node-js-9c4abac65c52)
+- [using async await and .then together](https://stackoverflow.com/questions/55019621/using-async-await-and-then-together)
 
 ## Author
 

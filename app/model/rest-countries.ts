@@ -1,11 +1,51 @@
 import slugify from '~/utils/slugify';
 
-function formatPopulation(value: number) {
-  return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(value);
-}
+export type Languages = {
+  iso639_1: string;
+  iso639_2: string;
+  name: string;
+  nativeName: string;
+};
+
+export type Currencies = {
+  code: string;
+  name: string;
+  symbol: string;
+};
+
+export type Country = {
+  alpha2Code: string;
+  alpha3Code: string;
+  borders?: Array<BorderCountry>;
+  capital?: string;
+  currencies: Array<Currencies>;
+  flag: string;
+  languages: Array<Languages>;
+  name: string;
+  nativeName: string;
+  population: number;
+  region: string;
+  subregion: string;
+  topLevelDomain: Array<string>;
+  independent: boolean;
+};
+
+export type BorderCountry = Pick<Country, 'alpha2Code' | 'alpha3Code' | 'name'>;
+
+export type CountryForCards = Pick<
+  Country,
+  | 'alpha2Code'
+  | 'alpha3Code'
+  | 'capital'
+  | 'flag'
+  | 'name'
+  | 'population'
+  | 'region'
+>;
 
 async function listAllCountries() {
   const fields = [
+    'alpha2Code',
     'alpha3Code',
     'capital',
     'flag',
@@ -27,14 +67,18 @@ async function listAllCountries() {
 
   const data = await res.json();
 
-  return data.map((country: any) => ({
+  return data.map((country: CountryForCards) => ({
     ...country,
+    flag: country.flag.includes('flagcdn')
+      ? country.flag
+      : `https://flagcdn.com/${country.alpha2Code.toLowerCase()}.svg`,
     population: formatPopulation(country.population),
   }));
 }
 
 async function searchCountryByName(name: string) {
   const fields = [
+    'alpha2Code',
     'alpha3Code',
     'capital',
     'flag',
@@ -58,8 +102,11 @@ async function searchCountryByName(name: string) {
 
   const data = await res.json();
 
-  return data.map((country: any) => ({
+  return data.map((country: CountryForCards) => ({
     ...country,
+    flag: country.flag.includes('flagcdn')
+      ? country.flag
+      : `https://flagcdn.com/${country.alpha2Code.toLowerCase()}.svg`,
     population: formatPopulation(country.population),
   }));
 }
@@ -104,6 +151,7 @@ async function getRegionList() {
 
 async function listCountriesInRegion(region: string) {
   const fields = [
+    'alpha2Code',
     'alpha3Code',
     'capital',
     'flag',
@@ -127,14 +175,17 @@ async function listCountriesInRegion(region: string) {
 
   const data = await res.json();
 
-  return data.map((country: any) => ({
+  return data.map((country: CountryForCards) => ({
     ...country,
+    flag: country.flag.includes('flagcdn')
+      ? country.flag
+      : `https://flagcdn.com/${country.alpha2Code.toLowerCase()}.svg`,
     population: formatPopulation(country.population),
   }));
 }
 
 async function getBorderCountryInfo(code: string) {
-  const fields = ['alpha3Code', 'name'];
+  const fields = ['alpha2Code', 'alpha3Code', 'name'];
 
   const params = new URLSearchParams({ fields: fields.join(',') }).toString();
 
@@ -154,6 +205,7 @@ async function getBorderCountryInfo(code: string) {
 
 async function getCountryDetailByCode(code: string) {
   const fields = [
+    'alpha2Code',
     'alpha3Code',
     'borders',
     'capital',
@@ -170,39 +222,62 @@ async function getCountryDetailByCode(code: string) {
 
   const params = new URLSearchParams({ fields: fields.join(',') }).toString();
 
-  const res = await fetch(
+  const country = await fetch(
     `https://restcountries.com/v2/alpha/${code}?${params}`
-  );
+  ).then((res) => {
+    if (!res?.ok) {
+      throw new Response(
+        `Sorry, an error occurred attempting to retrieve the details for country code: '${code}'.`,
+        { status: res.status }
+      );
+    }
+    return res.json();
+  });
 
-  if (!res?.ok) {
-    throw new Response(
-      `Sorry, an error occurred attempting to retrieve the details for country code: '${code}'.`,
-      { status: res.status }
+  const cBorders =
+    country.borders && country.borders.length > 0 ? country.borders : [];
+
+  let bc = [];
+  for (let i = 0; i < cBorders.length; i++) {
+    bc.push(
+      await getBorderCountryInfo(cBorders[i]).then((b) => ({
+        name: b.name,
+        alpha2Code: b.alpha2Code,
+        alpha3Code: b.alpha3Code,
+      }))
     );
   }
 
-  const data = await res.json();
-
   return {
-    ...data,
-    population: formatPopulation(data.population),
+    ...country,
+    flag: country.flag.includes('flagcdn')
+      ? country.flag
+      : `https://flagcdn.com/${country.alpha2Code.toLowerCase()}.svg`,
+    population: formatPopulation(country.population),
     topLevelDomain:
-      data.topLevelDomain.length > 1
-        ? data.topLevelDomain.join(', ')
-        : data.topLevelDomain[0],
+      country.topLevelDomain.length > 1
+        ? country.topLevelDomain.join(', ')
+        : country.topLevelDomain[0],
     languages:
-      data.languages.length > 1
-        ? data.languages
+      country.languages.length > 1
+        ? country.languages
             .map((lang: Record<string, string>) => lang.name)
             .join(', ')
-        : data.languages[0].name,
+        : country.languages[0].name,
     currencies:
-      data.currencies.length > 1
-        ? data.currencies
+      country.currencies && country.currencies.length > 1
+        ? country.currencies
             .map((money: Record<string, string>) => money.name)
             .join(', ')
-        : data.currencies[0].name,
+        : country.currencies
+        ? country.currencies[0].name
+        : '',
+    borders: bc,
   };
+}
+
+function formatPopulation(value: number) {
+  return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(value);
 }
 
 export {
