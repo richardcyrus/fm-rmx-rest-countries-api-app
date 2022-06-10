@@ -11,36 +11,42 @@ export type CountryCard = {
 
 function Card(props: CountryCard) {
   return (
-    <Link to={`/country/${props.alpha3Code}`} className="card-link">
+    <>
       <div className="card">
         <div className="card-image">
-          <img
-            src={props.flag}
-            width={264}
-            alt=""
-            className="card-flag"
-            loading="lazy"
-          />
+          <Link to={`/country/${props.alpha3Code}`} className="card-link">
+            <img
+              src={props.flag}
+              width={264}
+              alt=""
+              className="card-flag"
+              loading="lazy"
+            />
+          </Link>
         </div>
         <div className="card-body">
-          <h2 className="country-name">{props.name}</h2>
-          <dl className="card-facts">
-            <div className="card-fact-group">
-              <dt className="card-fact-label">Population</dt>
-              <dd className="card-fact-value">{props.population}</dd>
-            </div>
-            <div className="card-fact-group">
-              <dt className="card-fact-label">Region</dt>
-              <dd className="card-fact-value">{props.region}</dd>
-            </div>
-            <div className="card-fact-group">
-              <dt className="card-fact-label">Capital</dt>
-              <dd className="card-fact-value">{props.capital}</dd>
-            </div>
-          </dl>
+          <Link to={`/country/${props.alpha3Code}`} className="card-link">
+            <h2 className="country-name">{props.name}</h2>
+            <dl className="card-facts">
+              <div className="card-fact-group">
+                <dt className="card-fact-label">Population</dt>
+                <dd className="card-fact-value">{props.population}</dd>
+              </div>
+              <div className="card-fact-group">
+                <dt className="card-fact-label">Region</dt>
+                <dd className="card-fact-value">{props.region}</dd>
+              </div>
+              {props.capital && props.capital.length > 0 ? (
+                <div className="card-fact-group">
+                  <dt className="card-fact-label">Capital</dt>
+                  <dd className="card-fact-value">{props.capital}</dd>
+                </div>
+              ) : null}
+            </dl>
+          </Link>
         </div>
       </div>
-    </Link>
+    </>
   );
 }
 

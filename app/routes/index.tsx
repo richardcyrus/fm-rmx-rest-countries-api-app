@@ -85,9 +85,9 @@ export default function Index() {
 
   return (
     <>
-      <main id="main-content">
+      <main id="main-content" className="main-content">
         <div className="filter-bar">
-          <Form method="get" onChange={handleSearch}>
+          <Form className="country-search" method="get" onChange={handleSearch}>
             <label className="control-group">
               <VisuallyHidden>Search for a country</VisuallyHidden>
               <SearchIcon className="search-icon" />

@@ -4,9 +4,15 @@
   --color-background: #fafafa;
   --color-element-background: #fff;
   --color-input-content: #777575;
-  --color-input-placeholder: #848484;
+  --color-input-placeholder: #c4c4c4;
   --color-text: #111517;
   --font-family: 'Nunito Sans', sans-serif;
+  --font-size-12: 0.75rem;
+  --font-size-14: 0.875rem;
+  --font-size-16: 1rem;
+  --font-size-18: 1.125rem;
+  --font-size-22: 1.375rem;
+  --font-size-32: 2rem;
   --font-weight-black: 900;
   --font-weight-extra-light: 200;
   --font-weight-regular: 400;
@@ -103,10 +109,6 @@ button {
   margin-inline: 1rem;
   width: 100%;
 
-  @media screen and (min-width: 48em) {
-    margin-inline: 2rem;
-  }
-
   @media screen and (min-width: 75em) {
     margin-inline: 5rem;
   }
@@ -114,11 +116,12 @@ button {
 
 .site-title {
   color: var(--color-text);
-  font-size: 0.875rem;
+  font-size: var(--font-size-14);
   font-weight: var(--font-weight-black);
+  letter-spacing: 0;
   line-height: 1.25rem;
 
-  @media screen and (min-width: 48em) {
+  @media screen and (min-width: 75em) {
     font-size: 1.5rem;
   }
 }
@@ -128,9 +131,9 @@ button {
 }
 
 .theme-toggle-icon {
-  height: 16px;
-  margin-inline-end: 0.5rem;
-  width: 16px;
+  height: 1rem;
+  margin-inline-end: 0.63rem;
+  width: 1rem;
 }
 
 .dark [class*='theme-toggle-icon'] {
@@ -138,31 +141,32 @@ button {
 }
 
 .theme-toggle-button {
-  font-size: 0.75rem;
+  font-size: var(--font-size-12);
   font-weight: var(--font-weight-semi-bold);
   min-height: 2.5rem;
   min-width: 6.25rem;
 
-  @media screen and (min-width: 48em) {
-    font-size: 1rem;
+  @media screen and (min-width: 75em) {
+    font-size: var(--font-size-16);
     min-width: 7.5rem;
   }
 }
 /* #endregion Header Styles */
 
 /* #region Home Page Styles */
+@media screen and (min-width: 75em) {
+  .main-content {
+    padding-inline: 5rem;
+  }
+}
+
 .filter-bar {
   margin-block-start: 1.5rem;
 
-  @media screen and (min-width: 48em) {
+  @media screen and (min-width: 75em) {
     align-items: center;
     display: flex;
-    margin-block-start: 3rem;
-    margin-inline: 2rem;
-  }
-
-  @media screen and (min-width: 75em) {
-    margin-inline: 5rem;
+    margin-block: 3rem;
   }
 }
 /* #endregion Home Page Styles */
@@ -179,7 +183,7 @@ button {
   margin-inline: 1rem;
   padding-inline-start: 2rem;
 
-  @media screen and (min-width: 48em) {
+  @media screen and (min-width: 75em) {
     margin-inline: 0;
     width: 30rem;
   }
@@ -197,8 +201,9 @@ button {
 }
 
 .search-icon {
-  height: 18px;
-  width: 18px;
+  color: var(--color-input-placeholder);
+  height: 1.25rem;
+  width: 1.25rem;
 }
 
 .search-input {
@@ -206,17 +211,25 @@ button {
   border: none;
   color: var(--color-input-content);
   font-family: inherit;
-  font-size: 0.875rem;
+  font-size: var(--font-size-12);
   font-weight: var(--font-weight-regular);
   line-height: 1.25rem;
-  margin-inline-start: 1.5rem;
+  margin-inline-start: 1.625rem;
   padding: 0.25rem 0.15rem;
   transition: 180ms box-shadow ease-in-out;
   width: 80%;
 
+  @media screen and (min-width: 75em) {
+    font-size: var(--font-size-14);
+  }
+
   &::placeholder {
     color: var(--color-input-placeholder);
-    font-size: 0.75rem;
+    font-size: var(--font-size-12);
+
+    @media screen and (min-width: 75em) {
+      font-size: var(--font-size-14);
+    }
   }
 
   &:focus {
@@ -232,19 +245,15 @@ button {
   border-radius: 5px;
   box-shadow: 0 2px 9px 0 rgb(0 0 0 / 5%);
   display: flex;
-  height: 3.5rem;
+  height: 3rem;
   margin-block-start: 2.5rem;
   margin-inline-start: 1rem;
   position: relative;
   width: 12.5rem;
 
-  @media screen and (min-width: 48em) {
+  @media screen and (min-width: 75em) {
     margin-block-start: 0;
     margin-inline-start: auto;
-  }
-
-  &:focus {
-    outline: 3px solid transparent;
   }
 }
 
@@ -265,7 +274,11 @@ button {
 
 .chevron-icon {
   display: block;
-  height: 18px;
+  height: 0.875rem;
+
+  @media screen and (min-width: 75em) {
+    height: 1rem;
+  }
 }
 
 [data-reach-listbox-button] {
@@ -274,13 +287,17 @@ button {
   color: var(--color-text);
   cursor: pointer;
   display: inline-flex;
-  font-size: 0.875rem;
+  font-size: var(--font-size-12);
   font-weight: var(--font-weight-regular);
   line-height: 1.25rem;
   margin-inline-start: 1.5rem;
   outline: 3px solid transparent;
   padding: 0;
   width: 100%;
+
+  @media screen and (min-width: 75em) {
+    font-size: var(--font-size-14);
+  }
 
   &[aria-expanded='true'] > [data-reach-listbox-arrow] {
     transform: rotate(180deg);
@@ -292,12 +309,13 @@ button {
   border: none;
   border-radius: 5px;
   box-shadow: 0 2px 9px 0 rgb(0 0 0 / 5%);
-  left: 0;
   min-width: 12.5rem;
   outline: none;
-  top: 3.75rem;
+  top: 3.25rem;
 
-  &:focus {
+  &:focus,
+  &:focus-within {
+    box-shadow: 0 2px 9px 0 rgb(0 0 0 / 5%);
     outline: 3px solid transparent;
   }
 }
@@ -308,11 +326,15 @@ button {
 
 [data-reach-listbox-option] {
   cursor: pointer;
-  font-size: 0.875rem;
+  font-size: var(--font-size-12);
   letter-spacing: 0;
   line-height: 1.25rem;
   padding-block: 0.25rem;
   padding-inline: 1.5rem;
+
+  @media screen and (min-width: 75em) {
+    font-size: var(--font-size-14);
+  }
 
   &:last-of-type {
     margin-block-end: 0.25rem;
@@ -331,6 +353,262 @@ button {
   color: #fff !important;
 }
 /* #endregion Filter Listbox Styles */
+
+/* #region Country Card Styles */
+.card-container {
+  display: grid;
+  justify-items: center;
+  padding-block-end: 4.0625rem;
+
+  @media screen and (min-width: 75em) {
+    gap: 4.6875em 3.5em;
+    grid-auto-rows: max-content;
+    grid-template-columns: repeat(auto-fit, 16.5rem);
+  }
+
+  @media screen and (min-width: 87.5em) {
+    gap: 4.6875em;
+    grid-template-columns: repeat(4, 16.5rem);
+  }
+}
+
+.card {
+  background: var(--color-element-background);
+  border-radius: 5px;
+  box-shadow: 0 0 7px 2px rgb(0 0 0 / 3%);
+  margin-block-start: 2.5rem;
+  overflow: hidden; /* Need this to make the border radius apply to nested image. */
+  width: 16.5rem;
+
+  @media screen and (min-width: 75em) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-block-start: 0;
+  }
+
+  &:first-of-type {
+    margin-block-start: 2rem;
+
+    @media screen and (min-width: 75em) {
+      margin-block-start: 0;
+    }
+  }
+}
+
+.card-link {
+  text-decoration: none;
+}
+
+.card-image {
+  border-bottom: 0.015625rem dotted
+    hsl(var(--input-focus-h) var(--input-focus-s) var(--input-focus-l));
+}
+
+.card-body {
+  padding-block-end: 2.875rem;
+  padding-inline: 1.5rem;
+}
+
+.country-name {
+  color: var(--color-text);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-black);
+  line-height: 1.625rem;
+  margin-block-start: 1.5rem;
+}
+
+.card-facts {
+  margin-block-start: 1rem;
+}
+
+.card-fact-group {
+  display: flex;
+  margin-block-start: 0.5rem;
+}
+
+.card-fact-label {
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semi-bold);
+  line-height: 1rem;
+
+  &::after {
+    content: ':';
+  }
+}
+
+.card-fact-value {
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-extra-light);
+  line-height: 1rem;
+  padding-inline-start: 0.25rem;
+}
+/* #endregion Country Card Styles */
+
+/* #region Country Detail */
+.country-detail-content {
+  margin-inline: 1.75rem;
+  padding-block-end: 3.75rem;
+
+  @media screen and (min-width: 75em) {
+    margin-block-start: 5rem;
+    margin-inline: 5rem;
+  }
+}
+
+.nav-container {
+  margin-block-start: 2.5rem;
+
+  @media screen and (min-width: 75em) {
+    margin-block-start: 5rem;
+  }
+
+  .nav-button {
+    box-shadow: 0 0 7px 0 rgb(0 0 0 / 29%);
+    font-size: var(--font-size-14);
+    min-height: 2rem;
+    min-width: 6.5rem;
+
+    @media screen and (min-width: 75em) {
+      font-size: var(--font-size-16);
+    }
+
+    & > .back-arrow-icon {
+      align-self: center;
+      height: 1.125rem;
+      margin-inline-end: 0.5rem;
+      width: 1.125rem;
+
+      @media screen and (min-width: 75em) {
+        height: 1.25rem;
+        margin-inline-end: 0.625rem;
+        width: 1.25rem;
+      }
+    }
+  }
+}
+
+.detail-wrapper {
+  margin-block-start: 4rem;
+
+  @media screen and (min-width: 75em) {
+    display: flex;
+    margin-block-start: 5rem;
+  }
+}
+
+.large-flag {
+  width: 20rem;
+
+  @media screen and (min-width: 75em) {
+    max-width: 34.9819rem;
+    width: 100%;
+  }
+}
+
+.country-data {
+  margin-block-start: 2.75rem;
+
+  @media screen and (min-width: 75em) {
+    margin-inline-start: 7.5181rem;
+  }
+
+  .country-name {
+    color: var(--color-text);
+    font-size: var(--font-size-22);
+    font-weight: var(--font-weight-black);
+
+    @media screen and (min-width: 75em) {
+      font-size: var(--font-size-32);
+    }
+  }
+}
+
+.country-facts {
+  margin-block-start: 1rem;
+
+  @media screen and (min-width: 75em) {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: 1.5rem;
+  }
+}
+
+.fact-group-right {
+  margin-block-start: 2rem;
+
+  @media screen and (min-width: 75em) {
+    margin-block-start: 0;
+  }
+}
+
+.fact-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fact-label {
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semi-bold);
+  line-height: 2rem;
+
+  &::after {
+    content: ':';
+  }
+
+  @media screen and (min-width: 75em) {
+    font-size: var(--font-size-16);
+  }
+}
+
+.fact-value {
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-extra-light);
+  line-height: 2rem;
+  padding-inline-start: 0.25rem;
+}
+
+.border-countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-block-start: 2.125rem;
+
+  @media screen and (min-width: 75em) {
+    margin-block-start: 4.375rem;
+  }
+}
+
+.border-countries-title {
+  color: var(--color-text);
+  flex-basis: 100%;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semi-bold);
+  line-height: 1.5rem;
+  margin-block-end: 1rem;
+
+  @media screen and (min-width: 75em) {
+    flex-basis: auto;
+    margin-block-end: 0;
+  }
+}
+
+.border-country-button {
+  box-shadow: 0 0 4px 1px rgb(0 0 0 / 10%);
+  font-size: var(--font-size-12);
+  min-height: 1.75rem;
+  min-width: 6rem;
+  padding-inline: 1rem;
+
+  @media screen and (min-width: 75em) {
+    font-size: var(--font-size-14);
+  }
+}
+/* #endregion Country Detail */
 
 /* #region Catch Boundary */
 .catch-boundary {
@@ -384,267 +662,3 @@ button {
   }
 }
 /* #endregion Catch Boundary */
-
-/* #region Country Card Styles */
-.card-container {
-  align-items: start;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr));
-  justify-items: center;
-  margin-block-end: 4.0625rem;
-  margin-inline: 3.5rem;
-
-  @media screen and (min-width: 48em) {
-    margin-block-end: 2.8125rem;
-    margin-inline: 2rem;
-  }
-
-  @media screen and (min-width: 75em) {
-    column-gap: 3rem;
-    grid-template-columns: repeat(4, minmax(16.5rem, 1fr));
-    justify-items: start;
-    margin-inline: 5rem;
-  }
-}
-
-.card-link {
-  text-decoration: none;
-}
-
-.card {
-  background: var(--color-element-background);
-  border-radius: 5px;
-  box-shadow: 0 0 7px 2px rgb(0 0 0 / 3%);
-  margin-block-start: 2.5rem;
-  overflow: hidden;
-  width: 16.5rem;
-}
-
-.card-image {
-  width: 264px;
-
-  /* background-color: var(--color-input-content); */
-  /* border-bottom: 1px solid var(--color-input-content); */
-}
-
-.card-flag {
-  margin-inline: auto;
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: cover;
-}
-
-.card-body {
-  /* align-self: end; */
-  padding-block-end: 2.875rem;
-  padding-inline: 1.5rem;
-}
-
-.country-name {
-  color: var(--color-text);
-  font-size: 1.125rem;
-  font-weight: var(--font-weight-black);
-  line-height: 1.625rem;
-  margin-block-start: 1.5rem;
-}
-
-.card-facts {
-  margin-block-start: 1rem;
-}
-
-.card-fact-group {
-  display: flex;
-  margin-block-start: 0.5rem;
-}
-
-.card-fact-label {
-  color: var(--color-text);
-  font-size: 0.875rem;
-  font-weight: var(--font-weight-semi-bold);
-  line-height: 1rem;
-
-  &::after {
-    content: ': ';
-  }
-}
-
-.card-fact-value {
-  color: var(--color-text);
-  font-size: 0.875rem;
-  font-weight: var(--font-weight-extra-light);
-  line-height: 1rem;
-  padding-inline-start: 0.5rem;
-}
-/* #endregion Country Card Styles */
-
-/* #region Country Detail */
-.country-detail-content {
-  margin-inline: 1.75rem;
-  padding-block-end: 3.75rem;
-
-  @media screen and (min-width: 48em) {
-    margin-inline: 2rem;
-  }
-
-  @media screen and (min-width: 75em) {
-    margin-inline: 5rem;
-  }
-}
-
-.nav-container {
-  margin-block-start: 2.5rem;
-
-  @media screen and (min-width: 75em) {
-    margin-block-start: 5rem;
-  }
-
-  .nav-button {
-    box-shadow: 0 0 7px 0 rgb(0 0 0 / 29%);
-    font-size: 0.875rem;
-    min-height: 2rem;
-    min-width: 6.5rem;
-
-    @media screen and (min-width: 75em) {
-      font-size: 1rem;
-    }
-
-    & > .back-arrow-icon {
-      align-self: center;
-      height: 18px;
-      margin-inline-end: 0.5rem;
-      width: 18px;
-    }
-  }
-}
-
-.detail-wrapper {
-  margin-block-start: 4rem;
-
-  @media screen and (min-width: 62em) {
-    column-gap: 3.125rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media screen and (min-width: 75em) {
-    column-gap: 7.5rem;
-    margin-block-start: 5rem;
-  }
-}
-
-.large-flag {
-  @media screen and (min-width: 48em) {
-    width: 560px;
-  }
-}
-
-.country-data {
-  margin-block-start: 2.75rem;
-
-  @media screen and (min-width: 62em) {
-    margin-block-start: 0;
-  }
-
-  @media screen and (min-width: 75em) {
-    margin-block-start: 2rem;
-  }
-
-  .country-name {
-    color: var(--color-text);
-    font-size: 1.375rem;
-    font-weight: var(--font-weight-black);
-
-    @media screen and (min-width: 75em) {
-      font-size: 2rem;
-    }
-  }
-}
-
-.country-facts {
-  margin-block-start: 1rem;
-
-  @media screen and (min-width: 48em) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media screen and (min-width: 75em) {
-    margin-block-start: 1.5rem;
-  }
-}
-
-.fact-group-right {
-  margin-block-start: 2rem;
-
-  @media screen and (min-width: 48em) {
-    margin-block-start: 0;
-  }
-}
-
-.fact-group {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.fact-label {
-  color: var(--color-text);
-  font-size: 0.875rem;
-  font-weight: var(--font-weight-semi-bold);
-  line-height: 2rem;
-
-  @media screen and (min-width: 75em) {
-    font-size: 1rem;
-  }
-
-  &::after {
-    content: ': ';
-  }
-}
-
-.fact-value {
-  color: var(--color-text);
-  font-size: 0.875rem;
-  font-weight: var(--font-weight-extra-light);
-  line-height: 2rem;
-  padding-inline-start: 0.5rem;
-
-  @media screen and (min-width: 75em) {
-    font-size: 1rem;
-  }
-}
-
-.border-countries {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.625rem;
-  margin-block-start: 2.125rem;
-
-  @media screen and (min-width: 75em) {
-    margin-block-start: 4.375rem;
-  }
-}
-
-.border-countries-title {
-  color: var(--color-text);
-  flex-basis: 100%;
-  font-size: 1rem;
-  font-weight: var(--font-weight-semi-bold);
-  line-height: 1.5rem;
-  margin-block-end: 1rem;
-
-  @media screen and (min-width: 75em) {
-    margin-block-end: 0;
-  }
-}
-
-.border-country-button {
-  box-shadow: 0 0 4px 1px rgb(0 0 0 / 10%);
-  font-size: 0.75rem;
-  min-height: 1.75rem;
-  min-width: 6rem;
-
-  @media screen and (min-width: 75em) {
-    font-size: 0.875rem;
-  }
-}
-/* #endregion Country Detail */
