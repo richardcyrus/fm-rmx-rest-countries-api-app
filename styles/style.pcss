@@ -82,12 +82,22 @@ button {
 
   &:hover,
   &:active {
-    background-color: var(--button-focus-background);
+    background-color: hsl(
+      var(--input-focus-h) var(--input-focus-s) var(--input-focus-l)
+    );
     color: #fff;
   }
 
-  &:focus {
-    box-shadow: 0 0 0 2px var(--button-focus-background);
+  &:focus,
+  &:focus-within {
+    border-color: hsl(
+      var(--input-focus-h) var(--input-focus-s) var(--input-focus-l)
+    );
+    box-shadow: 0 0 0 3px
+      hsl(
+        var(--input-focus-h) var(--input-focus-s)
+          calc(var(--input-focus-l) + 40%) / 80%
+      );
     outline-color: transparent;
     outline-style: solid;
   }
@@ -361,9 +371,10 @@ button {
   padding-block-end: 4.0625rem;
 
   @media screen and (min-width: 75em) {
-    gap: 4.6875em 3.5em;
     grid-auto-rows: max-content;
     grid-template-columns: repeat(auto-fit, 16.5rem);
+    justify-content: space-between;
+    row-gap: 4.6875em;
   }
 
   @media screen and (min-width: 87.5em) {
@@ -494,7 +505,9 @@ button {
   margin-block-start: 4rem;
 
   @media screen and (min-width: 75em) {
-    display: flex;
+    column-gap: 7.5181rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin-block-start: 5rem;
   }
 }
@@ -503,22 +516,18 @@ button {
   width: 20rem;
 
   @media screen and (min-width: 75em) {
-    max-width: 34.9819rem;
-    width: 100%;
+    width: 35rem;
   }
 }
 
 .country-data {
   margin-block-start: 2.75rem;
 
-  @media screen and (min-width: 75em) {
-    margin-inline-start: 7.5181rem;
-  }
-
   .country-name {
     color: var(--color-text);
     font-size: var(--font-size-22);
     font-weight: var(--font-weight-black);
+    line-height: 1.625;
 
     @media screen and (min-width: 75em) {
       font-size: var(--font-size-32);
@@ -530,8 +539,9 @@ button {
   margin-block-start: 1rem;
 
   @media screen and (min-width: 75em) {
-    display: flex;
-    justify-content: space-between;
+    column-gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin-block-start: 1.5rem;
   }
 }
@@ -540,6 +550,7 @@ button {
   margin-block-start: 2rem;
 
   @media screen and (min-width: 75em) {
+    justify-self: end;
     margin-block-start: 0;
   }
 }

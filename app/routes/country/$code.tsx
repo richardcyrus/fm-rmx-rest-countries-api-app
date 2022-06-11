@@ -51,6 +51,7 @@ function CountryDetail() {
               alt=""
               className="large-flag"
               loading="lazy"
+              width={560}
             />
           </div>
           <div className="country-data">
