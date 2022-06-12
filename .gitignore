@@ -220,3 +220,4 @@ dist-ssr
 # remix with postcss generated css
 app/styles
 .stylelintcache
+mocks/scratch.js
