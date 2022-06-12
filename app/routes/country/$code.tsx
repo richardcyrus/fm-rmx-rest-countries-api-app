@@ -74,20 +74,24 @@ function CountryDetail() {
                   <dt className="fact-label">Sub Region</dt>
                   <dd className="fact-value">{country.subregion}</dd>
                 </div>
-                <div className="fact-group">
-                  <dt className="fact-label">Capital</dt>
-                  <dd className="fact-value">{country.capital}</dd>
-                </div>
+                {country.capital && country.capital.length > 0 ? (
+                  <div className="fact-group">
+                    <dt className="fact-label">Capital</dt>
+                    <dd className="fact-value">{country.capital}</dd>
+                  </div>
+                ) : null}
               </dl>
               <dl className="fact-group-right" id="fact-group-right">
                 <div className="fact-group">
                   <dt className="fact-label">Top Level Domain</dt>
                   <dd className="fact-value">{country.topLevelDomain}</dd>
                 </div>
-                <div className="fact-group">
-                  <dt className="fact-label">Currencies</dt>
-                  <dd className="fact-value">{country.currencies}</dd>
-                </div>
+                {country.currencies && country.currencies.length > 0 ? (
+                  <div className="fact-group">
+                    <dt className="fact-label">Currencies</dt>
+                    <dd className="fact-value">{country.currencies}</dd>
+                  </div>
+                ) : null}
                 <div className="fact-group">
                   <dt className="fact-label">Languages</dt>
                   <dd className="fact-value">{country.languages}</dd>
