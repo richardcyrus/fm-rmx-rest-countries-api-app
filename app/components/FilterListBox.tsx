@@ -6,7 +6,7 @@ import {
   ListboxList,
   ListboxOption,
 } from '@reach/listbox';
-import { VisuallyHidden } from '@reach/visually-hidden';
+import VisuallyHidden from '@reach/visually-hidden';
 
 type RegionFilter = {
   regions: Record<string, string>;

@@ -2,7 +2,7 @@ import type { FormEvent } from 'react';
 import { useRef } from 'react';
 
 import { SearchIcon } from '@heroicons/react/solid';
-import { VisuallyHidden } from '@reach/visually-hidden';
+import VisuallyHidden from '@reach/visually-hidden';
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import {
