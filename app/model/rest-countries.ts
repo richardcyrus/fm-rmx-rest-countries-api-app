@@ -124,7 +124,7 @@ async function getRegionList() {
     );
   }
 
-  const data: Array<{ region: string; independent: boolean }> =
+  const data: Array<{ region: string; independent?: boolean }> =
     await res.json();
 
   const regionNames: Array<string> = [
@@ -137,13 +137,13 @@ async function getRegionList() {
     default: 'Filter by Region',
   };
 
-  const regions = regionNames.reduce((result, region) => {
+  const regions = regionNames.reduce((accumulator, region) => {
     // We set the separator to a literal space, so it is encoded correctly when
     // submitted as part of the form.
     let slug = slugify(region, ' ');
     // @ts-ignore
-    result[slug] = region;
-    return result;
+    accumulator[slug] = region;
+    return accumulator;
   }, {});
 
   return { ...defaultFilter, ...regions };
