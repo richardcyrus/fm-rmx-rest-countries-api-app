@@ -85,7 +85,7 @@ export default function Index() {
 
   return (
     <>
-      <main id="main-content" className="main-content">
+      <main id="main-content" className="main-content" role="main">
         <div className="filter-bar">
           <Form className="country-search" method="get" onChange={handleSearch}>
             <label className="control-group">
@@ -124,7 +124,7 @@ export function CatchBoundary() {
   const caught = useCatch();
 
   return (
-    <main id="main-content" className="catch-boundary">
+    <main id="main-content" className="catch-boundary" role="main">
       <div className="not-found">
         <div className="not-found-image"></div>
         <div className="not-found-message">

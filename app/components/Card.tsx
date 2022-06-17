@@ -1,3 +1,4 @@
+import VisuallyHidden from '@reach/visually-hidden';
 import { Link } from '@remix-run/react';
 
 export type CountryCard = {
@@ -13,8 +14,15 @@ function Card(props: CountryCard) {
   return (
     <>
       <div className="card">
+        <VisuallyHidden id={`country-card-${props.alpha3Code.toLowerCase()}`}>
+          {props.name}
+        </VisuallyHidden>
         <div className="card-image">
-          <Link to={`/country/${props.alpha3Code}`} className="card-link">
+          <Link
+            to={`/country/${props.alpha3Code}`}
+            title={props.name}
+            className="card-link"
+          >
             <img
               src={props.flag}
               width={264}
@@ -25,7 +33,11 @@ function Card(props: CountryCard) {
           </Link>
         </div>
         <div className="card-body">
-          <Link to={`/country/${props.alpha3Code}`} className="card-link">
+          <Link
+            to={`/country/${props.alpha3Code}`}
+            title={`${props.name} summary details`}
+            className="card-link"
+          >
             <h2 className="country-name">{props.name}</h2>
             <dl className="card-facts">
               <div className="card-fact-group">
