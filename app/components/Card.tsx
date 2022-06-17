@@ -29,7 +29,7 @@ function Card(props: CountryCard) {
         <div className="card-body">
           <Link
             to={`/country/${props.alpha3Code}`}
-            title={`${props.name} summary details`}
+            title={`${props.name} detail summary`}
             className="card-link"
           >
             <h2 className="country-name">{props.name}</h2>
