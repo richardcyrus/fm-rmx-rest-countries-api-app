@@ -502,10 +502,18 @@ button {
 .detail-wrapper {
   margin-block-start: 4rem;
 
-  @media screen and (min-width: 75em) {
-    column-gap: 7.5181rem;
+  @media screen and (min-width: 36em) {
+    column-gap: 1.75rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (min-width: 62em) {
+    column-gap: normal;
+  }
+
+  @media screen and (min-width: 75em) {
+    column-gap: 7.5181rem;
     margin-block-start: 5rem;
   }
 }
@@ -521,13 +529,22 @@ button {
 .country-data {
   margin-block-start: 2.75rem;
 
-  .country-name {
-    color: var(--color-text);
-    font-size: var(--font-size-22);
-    font-weight: var(--font-weight-black);
-    line-height: 1.625;
+  @media screen and (min-width: 36em) {
+    margin-block-start: 0;
+  }
 
-    @media screen and (min-width: 75em) {
+  @media screen and (min-width: 62em) {
+    margin-block-start: 2.75rem;
+  }
+
+  .country-name {
+    font-size: var(--font-size-22);
+
+    @media screen and (min-width: 36em) {
+      margin-block-start: 0;
+    }
+
+    @media screen and (min-width: 62em) {
       font-size: var(--font-size-32);
     }
   }
@@ -536,10 +553,13 @@ button {
 .country-facts {
   margin-block-start: 1rem;
 
-  @media screen and (min-width: 75em) {
+  @media screen and (min-width: 62em) {
     column-gap: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (min-width: 75em) {
     margin-block-start: 1.5rem;
   }
 }
@@ -600,7 +620,7 @@ button {
   line-height: 1.5rem;
   margin-block-end: 1rem;
 
-  @media screen and (min-width: 75em) {
+  @media screen and (min-width: 62em) {
     flex-basis: auto;
     margin-block-end: 0;
   }

@@ -37,7 +37,7 @@ function CountryDetail() {
 
   return (
     <>
-      <main id="main-content" className="country-detail-content">
+      <main id="main-content" className="country-detail-content" role="main">
         <div className="nav-container">
           <Link to="/" className="button nav-button">
             <ArrowNarrowLeftIcon className="back-arrow-icon" />
@@ -46,13 +46,7 @@ function CountryDetail() {
         </div>
         <div className="detail-wrapper">
           <div id="flag-container" className="flag-container">
-            <img
-              src={country.flag}
-              alt=""
-              className="large-flag"
-              loading="lazy"
-              width={560}
-            />
+            <img src={country.flag} alt="" className="large-flag" width={560} />
           </div>
           <div className="country-data">
             <h2 className="country-name">{country.name}</h2>
