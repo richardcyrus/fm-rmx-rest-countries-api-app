@@ -23,13 +23,7 @@ function Card(props: CountryCard) {
             title={props.name}
             className="card-link"
           >
-            <img
-              src={props.flag}
-              width={264}
-              alt=""
-              className="card-flag"
-              loading="lazy"
-            />
+            <img src={props.flag} width={264} alt="" className="card-flag" />
           </Link>
         </div>
         <div className="card-body">
