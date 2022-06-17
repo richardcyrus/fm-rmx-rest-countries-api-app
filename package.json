@@ -23,7 +23,7 @@
     "prepare": "husky install",
     "test": "vitest",
     "test:e2e": "start-server-and-test dev http://localhost:3000 cy:e2e",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p ./cypress/tsconfig.json --noEmit"
   },
   "repository": {
     "type": "git",
