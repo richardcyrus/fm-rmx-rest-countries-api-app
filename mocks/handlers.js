@@ -48,7 +48,7 @@ const handlers = [
     let results = countries.reduce((accumulator, item) => {
       let country = {};
 
-      if (item.region.toLowerCase().includes(region)) {
+      if (item.region.toLowerCase() === region) {
         fields.forEach((field) => (country[field] = item[field]));
         accumulator.push(country);
       }
