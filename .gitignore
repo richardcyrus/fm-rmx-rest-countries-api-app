@@ -209,7 +209,6 @@ dist-ssr
 
 # remix-run
 .cache
-.env
 .vercel
 .output
 
