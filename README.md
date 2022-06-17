@@ -91,6 +91,7 @@ Users should be able to:
 - [What Is the Correct TypeScript Return Type for JavaScript's setTimeout() Function?](https://www.designcise.com/web/tutorial/what-is-the-correct-typescript-return-type-for-javascripts-settimeout-function)
 - [find and filter arrays in JavaScript and Node.js](https://simonjcarr.medium.com/find-and-filter-arrays-in-javascript-and-node-js-9c4abac65c52)
 - [using async await and .then together](https://stackoverflow.com/questions/55019621/using-async-await-and-then-together)
+- [Dynamic tests from fetched data](https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/fundamentals__dynamic-tests-from-api)
 
 ## Author
 

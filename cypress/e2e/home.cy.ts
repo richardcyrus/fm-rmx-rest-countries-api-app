@@ -1,3 +1,9 @@
+/// <reference types="cypress" />
+
+const countries = Cypress.env('countries');
+const regions = Cypress.env('regions');
+const countByRegion = Cypress.env('countByRegion');
+
 describe.skip('Theme Toggle', () => {
   const visit = (darkAppearance: boolean) =>
     cy.visit('/', {
@@ -17,6 +23,7 @@ describe.skip('Theme Toggle', () => {
     cy.findByText(/dark mode/i).click();
     cy.get('html').should('have.class', 'dark');
   });
+
   it('toggles the theme to light mode', () => {
     visit(true);
     cy.findByText(/dark mode/i).click();
@@ -24,8 +31,6 @@ describe.skip('Theme Toggle', () => {
   });
 });
 
-// TODO: Check for search box and region filter controls,
-// and that the card links are present
 describe('See all countries from the API on the homepage', () => {
   beforeEach(() => {
     cy.visit('/');
@@ -41,7 +46,7 @@ describe('See all countries from the API on the homepage', () => {
   });
 
   it('contains the correct number of country cards', () => {
-    cy.get('.card').should('have.length', 250);
+    cy.get('.card').should('have.length', countries.length);
   });
 });
 
@@ -72,16 +77,19 @@ describe('When choosing a region', () => {
     cy.visit('/');
   });
 
-  // TODO: Test all regions
-  it('should filter the cards by the region', () => {
-    cy.findByLabelText(/filter by region/i).click();
-    cy.get('[data-label=Polar]')
-      .click()
-      .then(() => {
-        cy.url().should('include', 'region=polar');
-        cy.get('.card-container').should('not.be.empty');
-        cy.get('.card').should('have.length', 1);
-        cy.get('h2').should('have.text', 'Antarctica');
-      });
+  regions.forEach((region: string) => {
+    it(`should filter the cards by the region: ${region}`, () => {
+      cy.findByLabelText(/filter by region/i).click();
+      cy.get(`[data-label="${region}"]`)
+        .click()
+        .then(() => {
+          cy.url().should(
+            'include',
+            `region=${region.toLowerCase().replace(' ', '+')}`
+          );
+          cy.get('.card-container').should('not.be.empty');
+          cy.get('.card').should('have.length', countByRegion[region]);
+        });
+    });
   });
 });
