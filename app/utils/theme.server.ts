@@ -14,8 +14,6 @@ const themeStorage = createCookieSessionStorage({
     secrets: [sessionSecret],
     sameSite: 'lax',
     path: '/',
-    // no theme for you on my 100th birthday! 😂
-    expires: new Date('2072-02-07'),
     httpOnly: true,
   },
 });
@@ -29,7 +27,11 @@ async function getThemeSession(request: Request) {
       return isTheme(themeValue) ? themeValue : Theme.LIGHT;
     },
     setTheme: (theme: Theme) => session.set('theme', theme),
-    commit: () => themeStorage.commitSession(session),
+    commit: () =>
+      themeStorage.commitSession(session, {
+        // no theme for you on my 100th birthday! 😂
+        expires: new Date('2072-02-07'),
+      }),
   };
 }
 

@@ -17,14 +17,20 @@ module.exports = {
         `prettier --ignore-path .gitignore --write ${codeFiles.join(' ')}`
       );
       commands.push(
-        `eslint --cache --fix --ignore-path .gitignore ${codeFiles.join(' ')}`
+        `eslint --cache --cache-location ./node_modules/.cache/eslint --fix --ignore-path .gitignore ${codeFiles.join(
+          ' '
+        )}`
       );
     }
 
     // Lint and fix PostCSS files with Stylelint
     const postCssFiles = micromatch(allFiles, ['**/*.pcss']);
     if (postCssFiles.length > 0) {
-      commands.push(`stylelint ${postCssFiles.join(' ')} --cache --fix`);
+      commands.push(
+        `stylelint ${postCssFiles.join(
+          ' '
+        )} --cache --cache-location ./node_modules/.cache/stylelint --fix`
+      );
     }
 
     // Format Markdown, JSON, and PostCSS files.
