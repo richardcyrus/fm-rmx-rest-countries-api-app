@@ -138,9 +138,10 @@ async function getRegionList() {
   };
 
   const regions = regionNames.reduce((accumulator, region) => {
-    // We set the separator to a literal space, so it is encoded correctly when
-    // submitted as part of the form.
-    let slug = slugify(region, ' ');
+    // We set the separator to an underscore; it is swapped out when the form
+    // submitted to search by region. Using a space is invalid as part of an ID.
+    // This is simpler than specifying individual IDs in the drop-down.
+    let slug = slugify(region, '_');
     // @ts-ignore
     accumulator[slug] = region;
     return accumulator;

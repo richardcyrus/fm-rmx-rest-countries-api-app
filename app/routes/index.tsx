@@ -80,12 +80,16 @@ export default function Index() {
   }
 
   const onFilterChange = (value: string) => {
-    submit({ region: value }, { method: 'get', replace: true });
+    submit(
+      // Replace the `_` with a space so that it is encoded correctly.
+      { region: value.replace('_', ' ') },
+      { method: 'get', replace: true }
+    );
   };
 
   return (
     <>
-      <main id="main-content" className="main-content" role="main">
+      <main id="main-content" className="main-content">
         <div className="filter-bar">
           <Form className="country-search" method="get" onChange={handleSearch}>
             <label className="control-group">
@@ -104,7 +108,7 @@ export default function Index() {
           <Form className="region-filter" method="get">
             <FilterListBox
               regions={data.regions}
-              selectedRegion={data.selectedRegion}
+              selectedRegion={data.selectedRegion.replace(' ', '_')}
               onFilterChange={onFilterChange}
             />
           </Form>

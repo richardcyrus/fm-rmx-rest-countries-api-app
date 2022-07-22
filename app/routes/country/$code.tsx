@@ -37,7 +37,7 @@ function CountryDetail() {
 
   return (
     <>
-      <main id="main-content" className="country-detail-content" role="main">
+      <main id="main-content" className="country-detail-content">
         <div className="nav-container">
           <Link to="/" className="button nav-button">
             <ArrowNarrowLeftIcon className="back-arrow-icon" />

@@ -83,7 +83,7 @@
     "concurrently": "^7.2.1",
     "cross-env": "^7.0.3",
     "cssnano": "^5.1.11",
-    "cypress": "^10.3.0",
+    "cypress": "^10.3.1",
     "cypress-axe": "^1.0.0",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",

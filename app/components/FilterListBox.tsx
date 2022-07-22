@@ -23,7 +23,7 @@ function FilterListBox(props: RegionFilter) {
         defaultValue={props.selectedRegion}
         value={props.selectedRegion}
         onChange={props.onFilterChange}
-        required={true}
+        required={false}
       >
         <ListboxButton
           aria-labelledby="region-filter-label"
